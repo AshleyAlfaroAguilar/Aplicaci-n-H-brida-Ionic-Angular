@@ -1,0 +1,7 @@
+{
+  "name": "auth-guard-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

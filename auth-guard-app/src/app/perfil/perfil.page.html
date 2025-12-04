@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Perfil de usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Perfil de usuario</ion-card-title>
+      <ion-card-subtitle>Formulario reactivo interno</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="perfilForm" (ngSubmit)="onSubmit()">
+        <!-- Nombre -->
+        <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input type="text" formControlName="nombre"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="nombre?.touched && nombre?.invalid">
+          <p *ngIf="nombre?.errors?.['required']">
+            El nombre es obligatorio.
+          </p>
+        </ion-text>
+
+        <!-- Apellido -->
+        <ion-item class="ion-margin-top">
+          <ion-label position="stacked">Apellido</ion-label>
+          <ion-input type="text" formControlName="apellido"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="apellido?.touched && apellido?.invalid">
+          <p *ngIf="apellido?.errors?.['required']">
+            El apellido es obligatorio.
+          </p>
+        </ion-text>
+
+        <!-- Correo -->
+        <ion-item class="ion-margin-top">
+          <ion-label position="stacked">Correo electrónico</ion-label>
+          <ion-input type="email" formControlName="correo"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="correo?.touched && correo?.invalid">
+          <p *ngIf="correo?.errors?.['required']">
+            El correo es obligatorio.
+          </p>
+          <p *ngIf="correo?.errors?.['email']">
+            Ingrese un correo válido.
+          </p>
+        </ion-text>
+
+        <ion-button
+          class="ion-margin-top"
+          type="submit"
+          expand="block"
+          [disabled]="perfilForm.invalid"
+        >
+          Guardar datos
+        </ion-button>
+        <ion-button
+          expand="block"
+          color="medium"
+          class="ion-margin-top"
+          (click)="volverAlHome()"
+        >
+          Regresar al Inicio
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

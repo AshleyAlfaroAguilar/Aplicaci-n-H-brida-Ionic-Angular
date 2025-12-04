@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Iniciar sesión</ion-card-title>
+      <ion-card-subtitle>Ingrese sus credenciales</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+         <ion-item>
+      <ion-label position="stacked">Correo electrónico</ion-label>
+      <ion-input
+        type="email"
+        formControlName="email"
+      ></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="email?.touched && email?.invalid">
+      <p *ngIf="email?.errors?.['required']">
+        El correo es obligatorio.
+      </p>
+      <p *ngIf="email?.errors?.['email']">
+        Ingrese un correo válido.
+      </p>
+    </ion-text>
+
+    <!-- Password -->
+    <ion-item class="ion-margin-top">
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input
+        type="password"
+        formControlName="password"
+      ></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="password?.touched && password?.invalid">
+      <p *ngIf="password?.errors?.['required']">
+        La contraseña es obligatoria.
+      </p>
+      <p *ngIf="password?.errors?.['minlength']">
+        La contraseña debe tener al menos 6 caracteres.
+      </p>
+    </ion-text>
+
+    <!-- Botón -->
+    <ion-button
+      class="ion-margin-top"
+      type="submit"
+      expand="block"
+      [disabled]="loginForm.invalid"
+    >
+      Iniciar sesión
+    </ion-button>
+    
+    <ion-text color="danger" *ngIf="errorMessage">
+      <p>{{ errorMessage }}</p>
+    </ion-text>
+  </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
